@@ -1,0 +1,15 @@
+{
+    "config": {
+      "endPoint": "localhost",
+      "port": 9000,
+      "secure": true,
+      "accessKey": "minioadmin",
+      "secretKey": "minioadmin",
+      "bucket": "test",
+      "prefix": "",
+      "suffix": ".mp4",
+      "events": [
+        "s3:ObjectCreated:*"
+      ]
+    }
+  }
