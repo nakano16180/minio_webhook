@@ -15,7 +15,7 @@ if (mcConfig.endPoint === '<endpoint>') {
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+'/'));
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 app.post('/', (req, res) => {
