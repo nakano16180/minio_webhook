@@ -15,7 +15,7 @@ if (mcConfig.endPoint === '<endpoint>') {
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+'/'));
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 
 app.post('/', (req, res) => {
@@ -26,13 +26,12 @@ app.post('/', (req, res) => {
 });
 
 
-var server = app.listen(PORT, () =>{
-  console.log(`listening on *:${PORT}`);
+var server = app.listen(port, () =>{
+  console.log(`listening on *:${port}`);
 });
 
 
 
-var process = require('process')
 process.on('SIGINT', () => {
   console.info("Interrupted")
   process.exit(0)
