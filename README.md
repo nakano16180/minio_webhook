@@ -1,15 +1,6 @@
 ## minio webhook
 
-```
-$ mkdir minio_webhook && cd minio_webhook/
-$ npm init -y
-$ npm i --save express body-parser
-$ touch app.js
-$ npm install --save minio config
-
-```
-
-## run server
+### run webhook server
 ```
 $ NODE_ENV=webhook node app.js 
 ```
@@ -19,7 +10,7 @@ $ curl -d {} http://localhost:3000
 $ curl -d '{"first_name": "Kenji", "last_name": "Yamada"}' http://localhost:3000
 ```
 
-## use docker
+### use docker
 
 ```
 $ cd ./minio_webhook/
@@ -31,4 +22,11 @@ open terminal
 
 ```
 $ curl -X POST http://localhost:3000 -d {}
+```
+
+### run minio server
+
+```
+$ docker pull minio/minio
+$ docker run -p 9000:9000 minio/minio server /data
 ```
