@@ -25,6 +25,7 @@ function baseName(str){
 }
 
 app.post('/', (req, res) => {
+  console.log(req);
   var bucketName = req.body.Records[0].s3.bucket.name;
   console.log('==== bucket information =====');
   console.log(bucketName);
