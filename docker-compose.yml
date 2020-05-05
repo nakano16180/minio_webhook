@@ -6,36 +6,11 @@ services:
     ports:
       - "9000:9000"
     environment:
-      - "MINIO_ACCESS_KEY=minioadmin"
-      - "MINIO_SECRET_KEY=minioadmin"
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
     command: server /export
     networks:
       - minio-lambda-net
-
-  webhookserver:
-    build: .
-    container_name: minio-hook
-    image: minio-hook
-    ports: 
-      - "3000:3000"
-    networks:
-      - minio-lambda-net
-
-  webhookconfig:
-    container_name: mc
-    image: minio/mc
-    depends_on:
-      - minio
-    networks:
-      - minio-lambda-net
-
-    entrypoint: >
-      /bin/sh -c "
-      until (/usr/bin/mc config host add myminio http://myminio:9000 minioadmin minioadmin) do echo '...waiting...' && sleep 1; done;
-      /usr/bin/mc admin config set myminio notify_webhook:1 queue_limit="0"  endpoint="http://minio-hook:3000/" queue_dir="";
-      /usr/bin/mc admin service restart myminio;
-      exit 0;
-      "
 
 networks:
   minio-lambda-net:
