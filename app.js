@@ -14,6 +14,7 @@ if (mcConfig.endPoint === '<endpoint>') {
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+'/'));
+app.use(bodyParser.json()); // for parsing application/json
 
 const port = process.env.PORT || 3000;
 
@@ -26,6 +27,7 @@ function baseName(str){
 
 app.post('/', (req, res) => {
   console.log(req);
+  console.log('=============================');
   var bucketName = req.body.Records[0].s3.bucket.name;
   console.log('==== bucket information =====');
   console.log(bucketName);
@@ -37,13 +39,14 @@ app.post('/', (req, res) => {
   var filename = baseName(uplodedFile);
   console.log(filename);
   console.log('=============================');
+  
+  res.send("");
 });
 
 
 var server = app.listen(port, () =>{
   console.log(`listening on *:${port}`);
 });
-
 
 
 process.on('SIGINT', () => {
