@@ -4,15 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-var config = require('config');
-
-var mcConfig = config.get('config');
-if (mcConfig.endPoint === '<endpoint>') {
-    console.log('Please configure your endpoint in \"config/webhook.json\".');
-    process.exit(1);
-}
-
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname+'/'));
 app.use(bodyParser.json()); // for parsing application/json
 
@@ -26,7 +17,7 @@ function baseName(str){
 }
 
 app.post('/', (req, res) => {
-  console.log(req);
+  console.log(req.body);
   console.log('=============================');
   var bucketName = req.body.Records[0].s3.bucket.name;
   console.log('==== bucket information =====');
