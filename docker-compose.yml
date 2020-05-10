@@ -1,7 +1,7 @@
 version: "2"
 services:
   minio:
-    container_name: myminio
+    container_name: minio
     image: minio/minio
     ports:
       - "9000:9000"
@@ -9,9 +9,8 @@ services:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
       MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
     command: server /export
-    networks:
-      - minio-lambda-net
 
 networks:
-  minio-lambda-net:
-    external: true
+  default:
+    external:
+      name: minio-lambda-net
