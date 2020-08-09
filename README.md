@@ -1,16 +1,6 @@
 ## minio webhook
 
 ### run webhook server
-```
-$ NODE_ENV=webhook node app.js 
-```
-
-```
-$ curl -d {} http://localhost:3000
-$ curl -d '{"first_name": "Kenji", "last_name": "Yamada"}' http://localhost:3000
-```
-
-### use docker
 
 ```
 $ cd ./minio_webhook/
