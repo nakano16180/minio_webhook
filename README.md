@@ -14,26 +14,6 @@ open terminal
 $ curl -X POST http://localhost:3000 -d {}
 ```
 
-### run minio server
+### run with minio server
 
-```
-$ docker pull minio/minio
-$ docker run -p 9000:9000 minio/minio server /data
-```
-
-以下の手順でサーバーの設定を行う
-
-```
-$ docker run --rm --name mc --net=minio-lambda-net -it --entrypoint=/bin/sh minio/mc
-# mc config host add myminio http://172.18.0.3:9000 minioadmin minioadmin
-# mc mb myminio/test
-
-# mc admin config set myminio notify_webhook:1 queue_limit="0"  endpoint="http://minio-hook:3000" queue_dir=""
-# mc admin service restart myminio
-
-# mc event add myminio/test arn:minio:sqs::1:webhook --event put --suffix .mp4
-
-# mc event list myminio/test
-```
-
-ブラウザーを開き、testという名前のバケットにmp4をアップロードするとeventが発火する。
+- https://github.com/nakano16180/s3_practice
