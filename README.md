@@ -4,6 +4,7 @@
 
 ```
 $ cd ./minio_webhook/
+$ pipenv install
 $ npm install
 $ docker build -t kaito/minio_webhook .
 $ docker run -d --name minio-hook --net=minio-lambda-net -it -p 3000:3000 --restart=always kaito/minio_webhook
@@ -24,5 +25,5 @@ $ docker-compose exec mc /bin/sh
 
 ```
 $ cd minio_webhook/
-$ node set-bucket-notification.js
+$ pipenv run python notification-setup.py
 ```
