@@ -22,3 +22,5 @@ $ docker run --name mc --net=s3_practice_default -it --entrypoint=/bin/sh minio/
 # mc mb minio/mybucket
 # mc event add minio/mybucket arn:minio:sqs::1:webhook --event put
 ```
+
+![Screenshot from 2021-08-21 11-04-28](https://user-images.githubusercontent.com/36945685/130307335-87485c1a-5200-4ea2-a0e3-ce6f66cf90ed.png)
